@@ -26,15 +26,15 @@ export const site: SiteProfile = {
   name: "Kotlin Doc Trans",
   host: "kotlinlang.org",
   pathPrefix: "/docs/",
-  // 標準ライブラリの API (`/api/`. Dokka で作られている) も、アプリの中で開く (ドキュメントのリンクから入る).
-  // 古い URL (`/api/latest/jvm/stdlib/...`) は、転送のページで、新しい URL (`/api/core/...`) に移る (アプリも、たどる)
+  // 標準ライブラリの API (`/api/`. Dokka で作られている) もアプリの中で開く (ドキュメントのリンクから入る).
+  // 古い URL (`/api/latest/jvm/stdlib/...`) は, 転送のページで新しい URL (`/api/core/...`) に移る (アプリもたどる)
   otherPathPrefixes: ["/api/"],
-  // home.html は JavaScript で描かれるので、サーバーが本文を返す、最初のページを開く
+  // home.html は JavaScript で描かれるので, サーバーが本文を返す最初のページを開く
   homeUrl: "https://kotlinlang.org/docs/getting-started.html",
   contentSelectors: ["article.article", ".main-content"],
-  // API のページの、コピーのボタンと、見出しのリンクの印は、本文ではない
+  // API のページのコピーのボタンと見出しのリンクの印は, 本文ではない
   removeSelectors: [".copy-popup-wrapper", ".anchor-wrapper"],
-  // API のページの、宣言 (シグネチャ)、名前の行、パンくず、対応する環境の印、見出しの名前は、表示するが、翻訳しない
+  // API のページの宣言 (シグネチャ), 名前の行, パンくず, 対応する環境の印, 見出しの名前は, 表示するが翻訳しない
   noTranslateSelectors: [
     ".symbol",
     ".monospace",
@@ -43,30 +43,30 @@ export const site: SiteProfile = {
     ".main-subrow",
     ".cover h1",
   ],
-  // 練習の問題、ヒント、答えのコードは、サイトのように畳む (開け閉めできる)
+  // 練習の問題, ヒント, 答えのコードは, サイトのように畳む (開け閉めできる)
   rewrite: foldExpandables,
-  // 見出しと、練習の問題の名前 (畳む項目は summary に組み直してある) の、予約語 (「If」「For loops」「while and do-while loops」の if, for, while) は、
-  // 英語の言葉として訳さない. 見出しそのものか、後ろに「loops」などが続くときだけ (「Kotlin for ...」の for は訳す)
+  // 見出しと練習の問題の名前 (畳む項目は summary に組み直してある) の予約語 (「If」「For loops」「while and do-while loops」の if, for, while) は,
+  // 英語の言葉として訳さない. 見出しそのものか, 後ろに「loops」などが続くときだけ (「Kotlin for ...」の for は訳す)
   keepTerms: {
     selector: "h1, h2, h3, h4, h5, h6, dt, summary",
     pattern: new RegExp(
       `\\b(?:${KEYWORDS})\\b(?=(?:\\s+(?:and|or)\\s+(?:${KEYWORDS}))*\\s+(?:${FOLLOWERS})\\b|\\s*$)`,
       "i",
     ),
-    // 予約語で始まる見出しは、翻訳に渡すとき、前に The を付ける (Google が「If expression」を「If」だけにしないように)
+    // 予約語で始まる見出しは, 翻訳に渡すときに前に The を付ける (Google が「If expression」を「If」だけにしないように)
     lead: "The",
   },
-  // コードの //sampleStart と //sampleEnd は、サイトの JavaScript が隠す印 (試せる部分の範囲)
+  // コードの //sampleStart と //sampleEnd は, サイトの JavaScript が隠す印 (試せる部分の範囲)
   dropCodeLines: /^\s*\/\/sample(Start|End)\s*$/,
   titleSuffix: / \| (Kotlin Documentation|Core API – Kotlin Programming Language)$/,
-  // 目次 (ページの左のメニュー) は、JavaScript で描かれるので、サイトの JSON から読む
+  // 目次 (ページの左のメニュー) は JavaScript で描かれるので, サイトの JSON から読む
   menu: { type: "json", url: "https://kotlinlang.org/docs/HelpTOC.json", parse: parseToc },
-  // サイトの見た目で表示するとき、サイトの JavaScript は動かさないので、描き終えなかったときの表示 (本文を隠さない) にする
+  // サイトの見た目で表示するときは, サイトの JavaScript を動かさないので, 描き終えなかったときの表示 (本文を隠さない) にする
   siteLookBodyClass: "app-render-failed",
-  // サイトの CSS は、JavaScript が組み直した本文 (注意書きの枠など) に当たるので、同じ形に組み直す
+  // サイトの CSS は JavaScript が組み直した本文 (注意書きの枠など) に当たるので, 同じ形に組み直す
   siteLookRewrite: rewriteWriterside,
-  // URL に版はない (いつも最新の Kotlin のドキュメント). 最初のページの「Latest Kotlin release」から、今の版を読み取って、
-  // 翻訳のキャッシュを、版ごとに分ける (版は選べない. Kotlin の版が上がったら、新しく翻訳する)
+  // URL に版はない (いつも最新の Kotlin のドキュメント). 最初のページの「Latest Kotlin release」から今の版を読み取って,
+  // 翻訳のキャッシュを版ごとに分ける (版は選べない. Kotlin の版が上がったら, 新しく翻訳する)
   versionSource: {
     url: "https://kotlinlang.org/docs/getting-started.html",
     pattern: /Latest Kotlin release:[\s\S]*?(\d+\.\d+\.\d+)/,

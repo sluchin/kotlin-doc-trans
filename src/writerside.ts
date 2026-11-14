@@ -40,8 +40,8 @@ export function rewriteWriterside(content: Element): void {
  *
  * - 畳める項目 (`dt[data-expandable="true"]` と, 続く `dd`. 練習の問題と, ヒントなど) は,
  *   `dt` の中身を `summary` に, `dd` の中身を, その後ろに入れる (`dt` の id は `details` に移す).
- * - 畳めるコード (`div.code-collapse`. 練習の答えなど) は, `data-synopsis` を `summary` にして, コードを包む.
- * - 初めから開いている印 (`data-expanded` `data-is-expanded` が `true`) があれば, 開いておく.
+ * - 畳めるコード (`div.code-collapse`. 練習の答えなど) は, `data-synopsis` を `summary` にしてコードを包む.
+ * - 初めから開いている印 (`data-expanded` `data-is-expanded` が `true`) があれば開いておく.
  *
  * @param content 本文
  */

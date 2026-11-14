@@ -7,7 +7,7 @@
 import { absoluteUrl } from "../shared/ts/lib/docUrl";
 import type { MenuItem } from "../shared/ts/lib/profile";
 
-/** HelpTOC.json の 1 つのページ (ページか、子を持つグループ). */
+/** HelpTOC.json の 1 つのページ (ページか, 子を持つグループ). */
 interface TocPage {
   title: string;
   url?: string;
@@ -20,16 +20,16 @@ interface Toc {
   topLevelIds: string[];
 }
 
-/** 目次から外すページ (JavaScript で描かれるので、本文が取れない). */
+/** 目次から外すページ (JavaScript で描かれるので, 本文が取れない). */
 const SKIPPED = new Set(["home.html"]);
 
 /**
- * HelpTOC.json を、メニューの項目の木にする.
+ * HelpTOC.json を, メニューの項目の木にする.
  *
- * `url` を持つものがページ、`pages` を持つものがグループ (子の ID の並び). 同じ ID を、2 回たどらない.
+ * `url` を持つものがページ, `pages` を持つものがグループ (子の ID の並び). 同じ ID を, 2 回たどらない.
  *
  * @param json HelpTOC.json を読んだもの
- * @param base HelpTOC.json の URL (ページの相対 URL を、絶対 URL にする)
+ * @param base HelpTOC.json の URL (ページの相対 URL を, 絶対 URL にする)
  * @returns 項目
  */
 export function parseToc(json: unknown, base: string): MenuItem[] {

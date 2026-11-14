@@ -35,7 +35,7 @@ describe("Kotlin site profile", () => {
     expect(isDocUrl(site.homeUrl, site)).toBe(true);
     expect(site.tabs).toBeUndefined();
     expect(isDocUrl("https://kotlinlang.org/api/core/kotlin-stdlib/", site)).toBe(true);
-    // 古い URL (転送のページ) も、アプリで開いて、たどる
+    // 古い URL (転送のページ) も, アプリで開いて, たどる
     expect(isDocUrl("https://kotlinlang.org/api/latest/jvm/stdlib/", site)).toBe(true);
     expect(isDocUrl("https://kotlinlang.org/community/", site)).toBe(false);
     expect(isDocUrl("https://example.com/docs/a.html", site)).toBe(false);
@@ -67,7 +67,7 @@ describe("Kotlin site profile", () => {
     expect(page.html).not.toContain(">#<");
     const doc = new DOMParser().parseFromString(`<div>${page.html}</div>`, "text/html");
     const texts = collectSegments(doc.body.firstElementChild as Element).map((e) => e.textContent);
-    // 説明の文だけを翻訳する (宣言、名前、パンくず、見出しの名前は、翻訳しない)
+    // 説明の文だけを翻訳する (宣言, 名前, パンくず, 見出しの名前は, 翻訳しない)
     expect(texts).toEqual(["Returns an empty read-only list."]);
   });
 
@@ -112,7 +112,7 @@ describe("Kotlin site profile", () => {
   it("reads the current Kotlin version to separate the cache", () => {
     const source = site.versionSource;
     expect(source?.url.startsWith("https://kotlinlang.org/docs/")).toBe(true);
-    // 作り物の, 最初のページの一部 (サイトは, 属性の中に, エスケープした HTML で書く)
+    // 作り物の最初のページの一部 (サイトは, エスケープした HTML を属性の中に書く)
     const text =
       '<div data-content="{&quot;x&quot;:[&quot;\\u003cp\\u003eLatest Kotlin release: \\u003ca href\\u003d\\&quot;whatsnew2420.html\\&quot;\\u003e2.4.21\\u003c/a\\u003e&quot;]}"></div>';
     expect(versionFromText(text, source?.pattern as RegExp)).toBe("2.4.21");
